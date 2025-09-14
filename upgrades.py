@@ -24,7 +24,7 @@ class UpgradesPopup:
         self.implante_selecionado = None
 
     def handle_event(self, event, dinheiro, lista_implantes):
-        # <<< CORREÇÃO AQUI: A função agora retorna o objeto do upgrade, não o custo >>>
+       
         objeto_comprado = None
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.botao_fechar_popup.collidepoint(event.pos):
@@ -35,8 +35,7 @@ class UpgradesPopup:
                     if up.rect and up.rect.collidepoint(
                             event.pos) and not up.comprado and dinheiro >= up.custo and self.implante_selecionado.quantidade >= up.nivel_req:
                         up.comprado = True
-                        objeto_comprado = up  # Armazena o objeto do upgrade
-                        # Recalcula tudo que pode ter sido afetado pelo upgrade
+                        objeto_comprado = up
                         self.implante_selecionado._recalculate_total_income()
                         self.implante_selecionado._update_custo_proximo_nivel(lista_implantes)
                         break  # Sai do loop após uma compra

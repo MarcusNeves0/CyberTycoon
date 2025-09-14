@@ -134,27 +134,27 @@ class Implante:
             renda_antiga = self.renda_total
             self.quantidade += qtd_a_comprar
 
-            # --- Lógica de Bônus de Compra ---
+            
             up_nivel_gratis = self.get_upgrade_unico("Nível Grátis")
             if up_nivel_gratis and up_nivel_gratis.comprado:
                 for _ in range(qtd_a_comprar):
                     if random.random() < 0.04:
                         self.quantidade += 1
 
-            # <<< MUDANÇA AQUI: Nova lógica para o Memory Donate >>>
+           
             up_donate = self.get_upgrade_unico("Memory Donate")
             if up_donate and up_donate.comprado:
-                # Cria uma lista de todos os implantes que podem receber o bônus
+                
                 implantes_elegiveis = [
                     imp for imp in lista_implantes_completa
                     if imp.nome != self.nome and not imp.bloqueado
                 ]
                 if implantes_elegiveis:
                     for _ in range(qtd_a_comprar):
-                        if random.random() < 0.02:  # 2% de chance
+                        if random.random() < 0.02:  
                             implante_sorteado = random.choice(implantes_elegiveis)
                             implante_sorteado.quantidade += 1
-                            # É crucial recalcular a renda do implante que ganhou o nível
+                            
                             implante_sorteado._recalculate_total_income()
                             implante_sorteado._update_custo_proximo_nivel(lista_implantes_completa)
 

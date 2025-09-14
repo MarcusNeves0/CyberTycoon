@@ -23,7 +23,7 @@ except FileNotFoundError:
     print(f"Aviso: Fonte 'Rajdhani-Bold.ttf' não encontrada. Usando fonte padrão.")
     fonte_dinheiro = pygame.font.SysFont('Consolas', 40, bold=True)
 
-# <<< MUDANÇA AQUI: Carregando a fonte Cyberpunk para os implantes >>>
+
 try:
     caminho_fonte_cyberpunk = os.path.join('Fonts', 'Rajdhani.ttf')
     fonte_nome_implante = pygame.font.Font(caminho_fonte_cyberpunk, 20) # Tamanho para os nomes
@@ -33,22 +33,21 @@ except FileNotFoundError:
     fonte_nome_implante = pygame.font.SysFont('Consolas', 18, bold=True)
     fonte_item_implante = pygame.font.SysFont('Consolas', 16)
 
-# Fontes que ainda usam o padrão do sistema
+
 fonte_botoes = pygame.font.SysFont('Consolas', 20, bold=True)
 
 
-# --- Carregar Imagem de Fundo ---
+
 try:
     background_imagem = pygame.image.load('Background.png').convert()
     background_imagem = pygame.transform.scale(background_imagem, (LARGURA, ALTURA))
 except pygame.error:
     background_imagem = None
 
-# --- Variáveis de Estado ---
+
 dinheiro: float = 0.0
 modo_compra = '1x'
 
-# --- Lógica dos Popups ---
 popup_upgrades = UpgradesPopup()
 lista_contatos_obj = [
     Contato("Jackie Welles", 1e12, "A cada 60 segundos, te dá um nível grátis em um implante aleatório.", "Jackie.png"),
@@ -59,13 +58,13 @@ lista_contatos_obj = [
 ]
 popup_contatos = ContatosPopup(lista_contatos_obj)
 
-# --- Lógica dos Contatos Ativos ---
+
 jackie_timer = 0.0
 takemura_timer = 0.0
 tempo_proximo_chip = random.randint(60, 180)
 chip_ativo = None
 
-# --- Definições de UI ---
+
 PAINEL_ESQUERDO_X = 20
 rect_quadro_preto = pygame.Rect(PAINEL_ESQUERDO_X - 10, 70, 270, 55)
 rect_area_scroll_principal = pygame.Rect(PAINEL_ESQUERDO_X, rect_quadro_preto.bottom + 5, 260, ALTURA - rect_quadro_preto.bottom - 25)
